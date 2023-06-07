@@ -24,6 +24,8 @@ class SLLNode<T> {
     1. Push
       @params - (value:T)
       @desc - Add a node to the SLL class.
+    2. Pop
+      @desc - Pop a node element from SLL class.
 */
 
 class SLL<T> {
@@ -46,10 +48,40 @@ class SLL<T> {
 
     return this;
   }
+
+  pop() {
+    if (!this.length) return null;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+      this.length--;
+      return true;
+    }
+
+    let current = this.head;
+    let previous = null;
+
+    while (current.next) {
+      previous = current;
+      current = current.next;
+    }
+
+    this.tail = previous;
+    this.tail.next = null;
+
+    this.length--;
+
+    return current;
+  }
 }
 
 const sll = new SLL();
 
 sll.push(5);
+sll.push(15);
+sll.push(25);
+sll.push(25);
+sll.push(45);
 
 console.log(sll);

@@ -31,6 +31,9 @@ class SLLNode<T> {
     4. Unshift
       @params - (value:T)
       @desc - Add a new node element to the begining.
+    5. Get
+      @params - (index:number)
+      @desc - Find a node on index element. If not return null.
 */
 
 class SLL<T> {
@@ -112,10 +115,22 @@ class SLL<T> {
 
     return node;
   }
+
+  get(index: number) {
+    if (index < 0 || index >= this.length) return null;
+
+    let current = this.head;
+    let temp = 0;
+
+    while (temp !== index) {
+      current = current.next;
+      temp++;
+    }
+
+    return current;
+  }
 }
 
 const sll = new SLL();
-
-sll.unshift(30);
 
 console.log(sll);

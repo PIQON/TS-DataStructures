@@ -30,8 +30,26 @@ class SLL<T> {
   head: SLLNode<T> | null = null;
   tail: SLLNode<T> | null = null;
   length: number = 0;
+
+  push(value: T) {
+    const node = new SLLNode(value);
+
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+      this.tail = node;
+    }
+
+    this.length++;
+
+    return this;
+  }
 }
 
 const sll = new SLL();
+
+sll.push(5);
 
 console.log(sll);

@@ -26,6 +26,11 @@ class SLLNode<T> {
       @desc - Add a node to the SLL class.
     2. Pop
       @desc - Pop a node element from SLL class.
+    3. Shift
+      @desc - Delete a head node element.
+    4. Unshift
+      @params - (value:T)
+      @desc - Add a new node element to the begining.
 */
 
 class SLL<T> {
@@ -74,14 +79,43 @@ class SLL<T> {
 
     return current;
   }
+
+  shift() {
+    if (!this.head) return null;
+
+    let current = this.head;
+    this.head = current.next;
+
+    this.length--;
+
+    if (!this.length) {
+      this.tail = null;
+    }
+
+    return current;
+  }
+
+  unshift(value: T) {
+    const node = new SLLNode(value);
+
+    if (!this.head) {
+      this.head = node;
+      this.tail = this.head;
+    }
+
+    let current = this.head;
+
+    this.head = node;
+    this.head.next = current;
+
+    this.length++;
+
+    return node;
+  }
 }
 
 const sll = new SLL();
 
-sll.push(5);
-sll.push(15);
-sll.push(25);
-sll.push(25);
-sll.push(45);
+sll.unshift(30);
 
 console.log(sll);

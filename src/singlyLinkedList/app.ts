@@ -129,8 +129,50 @@ class SLL<T> {
 
     return current;
   }
+
+  set(index: number, value: T) {
+    const node = this.get(index);
+
+    if (!node) return false;
+
+    node.value = value;
+
+    return true;
+  }
+
+  insert(index: number, value: T) {
+    if (index < 0 || index  > this.length) return false;
+
+    if (index === 0) {
+      return this.unshift(value);
+    }
+    if (index  === this.length) {
+      return this.push(value);
+    }
+
+    const node = this.get(index - 1);
+
+    if (!node) return false;
+
+    const newNode = new SLLNode(value);
+    let temp = node.next;
+
+    node.next = newNode;
+    newNode.next = temp;
+
+    this.length++;
+
+    return true;
+  }
 }
 
 const sll = new SLL();
+
+sll.push(5);
+sll.push(10);
+sll.push(15);
+sll.push(20);
+
+sll.insert(1, 30);
 
 console.log(sll);

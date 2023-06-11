@@ -141,12 +141,12 @@ class SLL<T> {
   }
 
   insert(index: number, value: T) {
-    if (index < 0 || index  > this.length) return false;
+    if (index < 0 || index > this.length) return false;
 
     if (index === 0) {
       return this.unshift(value);
     }
-    if (index  === this.length) {
+    if (index === this.length) {
       return this.push(value);
     }
 
@@ -164,6 +164,27 @@ class SLL<T> {
 
     return true;
   }
+
+  remove(index: number) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) {
+      return this.shift();
+    }
+    if (index === this.length) {
+      return this.pop();
+    }
+
+    const prev = this.get(index - 1);
+
+    if (!prev) return false;
+
+    const temp = prev.next;
+    prev.next = temp.next;
+
+    this.length--;
+
+    return true;
+  }
 }
 
 const sll = new SLL();
@@ -174,5 +195,8 @@ sll.push(15);
 sll.push(20);
 
 sll.insert(1, 30);
+
+sll.remove(1);
+sll.remove(4);
 
 console.log(sll);

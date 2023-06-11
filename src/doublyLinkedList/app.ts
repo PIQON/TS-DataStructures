@@ -97,6 +97,23 @@ class DLL<T> {
 
     return currentHead;
   }
+
+  unshift(value: T) {
+    const node = new DLLNode(value);
+
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.head.prev = node;
+      node.next = this.head;
+      this.head = node;
+    }
+
+    this.length++;
+
+    return this;
+  }
 }
 
 const dll = new DLL();
@@ -106,5 +123,6 @@ dll.push(5);
 dll.push(9);
 
 dll.shift();
+dll.unshift(40);
 
 console.log(dll);

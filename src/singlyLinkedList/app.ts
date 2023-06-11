@@ -185,18 +185,23 @@ class SLL<T> {
 
     return true;
   }
+
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let prev = null;
+    let next = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+      next = null;
+    }
+
+    return this;
+  }
 }
-
-const sll = new SLL();
-
-sll.push(5);
-sll.push(10);
-sll.push(15);
-sll.push(20);
-
-sll.insert(1, 30);
-
-sll.remove(1);
-sll.remove(4);
-
-console.log(sll);

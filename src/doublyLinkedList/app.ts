@@ -114,6 +114,30 @@ class DLL<T> {
 
     return this;
   }
+
+  get(index: number) {
+    if (index < 0 || index > this.length) return null;
+
+    let temp, current;
+
+    if (index <= this.length / 2) {
+      temp = 0;
+      current = this.head;
+      while (temp !== index) {
+        current = current.next;
+        temp++;
+      }
+    } else {
+      temp = this.length - 1;
+      current = this.tail;
+
+      while (temp !== index) {
+        current = current.prev;
+        temp--;
+      }
+    }
+    return current;
+  }
 }
 
 const dll = new DLL();

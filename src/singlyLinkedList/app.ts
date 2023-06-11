@@ -34,6 +34,17 @@ class SLLNode<T> {
     5. Get
       @params - (index:number)
       @desc - Find a node on index element. If not return null.
+    6. Set
+      @params - (index:number,value:T)
+      @desc - Set a new value to the finded node.
+    7. Insert
+      @params - (index:number,value:T)
+      @desc - Insert a node on index with a given value.
+    8. Remove
+      @params - (index:number)
+      @desc - Remove a node on given index.
+    9. Reverse
+      @desc - Reverse a linked list.
 */
 
 class SLL<T> {

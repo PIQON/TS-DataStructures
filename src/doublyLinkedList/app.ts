@@ -76,6 +76,27 @@ class DLL<T> {
 
     return this;
   }
+
+  shift() {
+    if (!this.head) return undefined;
+
+    const currentHead = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+      this.length--;
+      return true;
+    }
+
+    this.head = currentHead.next;
+    this.head.prev = null;
+    currentHead.next = null;
+
+    this.length--;
+
+    return currentHead;
+  }
 }
 
 const dll = new DLL();
@@ -84,6 +105,6 @@ dll.push(3);
 dll.push(5);
 dll.push(9);
 
-dll.pop();
+dll.shift();
 
 console.log(dll);

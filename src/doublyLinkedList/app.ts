@@ -21,7 +21,24 @@
       @params - (value:T)
       @desc - Add a node to the DLL class.
     2. Pop
-      @desc - Delete a node.
+      @desc - Pop a node element from DLL class.
+    3. Shift
+      @desc - Delete a head node element.
+    4. Unshift
+      @params - (value:T)
+      @desc - Add a new node element to the begining.
+    5. Get
+      @params - (index:number)
+      @desc - Find a node on index element. If not return null.
+    6. Set
+      @params - (index:number,value:T)
+      @desc - Set a new value to the finded node.
+    7. Insert
+      @params - (index:number,value:T)
+      @desc - Insert a node on index with a given value.
+    8. Remove
+      @params - (index:number)
+      @desc - Remove a node on given index.
 
 */
 
@@ -150,6 +167,52 @@ class DLL<T> {
 
     return true;
   }
+
+  insert(index: number, value: T) {
+    if (index < 0 || index > this.length) return null;
+
+    if (index === 0) {
+      return this.unshift(value);
+    }
+
+    if (index === this.length) {
+      return this.push(value);
+    }
+
+    const newNode = new DLLNode(value);
+
+    const node = this.get(index - 1);
+
+    newNode.next = node.next;
+    node.next = newNode;
+    newNode.prev = node;
+
+    this.length++;
+
+    return true;
+  }
+
+  remove(index: number) {
+    if (index < 0 || index > this.length) return null;
+    if (index === 0) {
+      return this.shift();
+    }
+
+    if (index === this.length) {
+      return this.pop();
+    }
+
+    const node = this.get(index);
+
+    node.prev.next = node.next;
+    node.next.prev = node.prev;
+    node.next = null;
+    node.prev = null;
+
+    this.length--;
+
+    return node;
+  }
 }
 
 const dll = new DLL();
@@ -160,5 +223,7 @@ dll.push(9);
 
 dll.shift();
 dll.unshift(222);
+
+dll.insert(1, "cos");
 
 console.log(dll);

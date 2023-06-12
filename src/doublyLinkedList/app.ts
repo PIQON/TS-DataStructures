@@ -138,6 +138,18 @@ class DLL<T> {
     }
     return current;
   }
+
+  set(index: number, value: T) {
+    if (index < 0 || index > this.length) return null;
+
+    const node = this.get(index);
+
+    if (!node) return false;
+
+    node.value = value;
+
+    return true;
+  }
 }
 
 const dll = new DLL();
@@ -147,6 +159,6 @@ dll.push(5);
 dll.push(9);
 
 dll.shift();
-dll.unshift(40);
+dll.unshift(222);
 
 console.log(dll);
